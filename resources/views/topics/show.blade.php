@@ -41,15 +41,20 @@
                     {!! $topic->body !!}
                 </div>
 
+                <!-- 因为我们的 update 和 destroy 的授权条件是一致的，故此处使用 update 的授权判断即可 -->
+                @can('update',$topic)
                 <div class="operate">
                     <hr>
                     <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-default btn-xs" role="button">
                         <i class="glyphicon glyphicon-edit"></i> 编辑
                     </a>
                     <a href="#" class="btn btn-default btn-xs" role="button">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
                         <i class="glyphicon glyphicon-trash"></i> 删除
                     </a>
                 </div>
+                @endcan
             </div>
         </div>
     </div>
