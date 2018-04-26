@@ -33,7 +33,8 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 //only:声明资源路由时，你可以指定控制器应该处理的部分行为，而不是所有默认的行为
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
-Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
