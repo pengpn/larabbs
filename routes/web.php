@@ -44,3 +44,4 @@ Route::get('check',function (){
    return Arr::get(['a' => ['1' => '123'],'b' => ['2' => '234']],'b',[]);
 
 });
+Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
