@@ -38,6 +38,8 @@ Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
 
+Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
+
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 
 
