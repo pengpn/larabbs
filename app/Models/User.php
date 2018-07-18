@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\ActiveUserHelper;
+use App\Models\Traits\LastActiveAtHelper;
 use Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasRoles,ActiveUserHelper;
+    use HasRoles,ActiveUserHelper,LastActiveAtHelper;
 
     //我们对 notify() 方法做了一个巧妙的重写，现在每当你调用 $user->notify() 时，
     // users 表里的 notification_count 将自动 +1。
@@ -92,4 +93,6 @@ class User extends Authenticatable
 
         $this->attributes['avatar'] = $path;
     }
+
+
 }
