@@ -70,6 +70,9 @@ $api->version('v1', [
         // 某个用户的回复列表
         $api->get('users/{user}/replies', 'RepliesController@userIndex')
             ->name('api.users.replies.index');
+        // 资源推荐
+        $api->get('links', 'LinksController@index')
+            ->name('api.links.index');
         // 删除回复
         $api->delete('topics/{topic}/replies/{reply}','RepliesController@destory')
             ->name('api.topics.replies.destroy');
