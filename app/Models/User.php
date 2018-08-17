@@ -7,12 +7,16 @@ use App\Models\Traits\LastActiveAtHelper;
 use Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
     use HasRoles,ActiveUserHelper,LastActiveAtHelper;
+
+    //passport提供一些辅助函数，用于检查已认证用户的令牌和使用范围。
+    use HasApiTokens;
 
     //我们对 notify() 方法做了一个巧妙的重写，现在每当你调用 $user->notify() 时，
     // users 表里的 notification_count 将自动 +1。
@@ -104,6 +108,17 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    // 让passport支持手机号登录
+    // passport会先检测用户模型是否存在findForPassport方法，如果存在就通过findForPassport查找用户，而不是使用默认的邮箱
+    public function findForPassport($username)
+    {
+        filter_var($username, FILTER_VALIDATE_EMAIL) ?
+            $credentials['email'] = $username :
+            $credentials['phone'] = $username;
+
+        return self::where($credentials)->first();
     }
 
 
