@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\AuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
 use App\Models\User;
+use App\Traits\PassportToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -15,7 +16,7 @@ use Zend\Diactoros\Response as Psr7Response;
 
 class AuthorizationsController extends Controller
 {
-
+    use PassportToken;
 
     public function store(AuthorizationRequest $request, AuthorizationServer $server, ServerRequestInterface $serverRequest)
     {
@@ -99,8 +100,12 @@ class AuthorizationsController extends Controller
         }
 
         //第三方登录获取 user 后，我们可以使用 fromUser 方法为某一个用户模型生成token
-        $token = Auth::guard('api')->formUser($user);
-        return $this->respondWithToken($token)->setStatusCode(201);
+//        $token = Auth::guard('api')->formUser($user);
+//        return $this->respondWithToken($token)->setStatusCode(201);
+
+        //passport
+        $result = $this->getBearerTokenByUser($user,'1',false);
+        return $this->response->array($result)->setStatusCode(201);
     }
 
     public function update(AuthorizationServer $server, ServerRequestInterface $serverRequest)
