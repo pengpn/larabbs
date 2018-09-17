@@ -28,6 +28,7 @@ class JpushServiceProvider extends ServiceProvider
             return new Client(config('jpush.key'), config('jpush.secret'));
         });
 
+
         $this->app->alias(Client::class, 'jpush');
     }
 }
