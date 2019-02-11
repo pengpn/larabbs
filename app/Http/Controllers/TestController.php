@@ -30,4 +30,9 @@ class TestController extends Controller
     {
         echo 'test2';
     }
+
+    public function test3()
+    {
+        echo 'test3';
+    }
 }
