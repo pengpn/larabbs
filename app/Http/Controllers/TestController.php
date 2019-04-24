@@ -28,7 +28,7 @@ class TestController extends Controller
 
     public function test2()
     {
-        echo 'test22';
+        echo 'test23';
     }
 
 }
