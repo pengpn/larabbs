@@ -21,8 +21,8 @@ class TestController extends Controller
         return view('pages.permission_denied');
     }
 
-    public function test()
+    public function test2()
     {
-        echo 'test';
+        echo 'test2';
     }
 }
