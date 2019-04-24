@@ -20,9 +20,4 @@ class TestController extends Controller
         // 否则使用视图
         return view('pages.permission_denied');
     }
-
-    public function test()
-    {
-        echo 2;
-    }
 }
