@@ -26,4 +26,9 @@ class TestController extends Controller
         echo 'test1';
         echo 'fast-f';
     }
+
+    public function testFeature1()
+    {
+        echo 'feature';
+    }
 }
