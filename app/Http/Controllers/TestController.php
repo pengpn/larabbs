@@ -23,12 +23,12 @@ class TestController extends Controller
 
     public function test1()
     {
-        echo 'test1';
-        echo 'fast-f';
+
     }
 
     public function testFeature1()
     {
         echo 'feature';
     }
+
 }
