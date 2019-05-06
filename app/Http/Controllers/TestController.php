@@ -31,4 +31,9 @@ class TestController extends Controller
         echo 'feature';
     }
 
+    public function testFeature1()
+    {
+        echo 'feature1';
+    }
+
 }
